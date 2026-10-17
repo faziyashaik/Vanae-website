@@ -101,11 +101,6 @@ export default function HeroSection() {
         ref={contentRef}
         className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center justify-center mt-auto pb-12 md:pb-16 will-change-transform"
       >
-        {/* Major Lifestyle Statement Badge */}
-        <span className="inline-block py-2 px-6 mb-4 rounded-full border border-gold/50 bg-[#0D5A46]/80 text-gold text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold backdrop-blur-md shadow-xl">
-          {siteContent.hero.badgeText}
-        </span>
-
         {/* Supporting Copy */}
         <h1 className="text-white font-serif text-xl sm:text-2xl md:text-3xl tracking-wide font-normal mb-6 drop-shadow-lg max-w-2xl">
           {siteContent.hero.majorStatement}

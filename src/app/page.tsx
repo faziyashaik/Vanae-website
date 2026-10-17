@@ -10,7 +10,6 @@ import SkyTerraceSection from "@/components/SkyTerraceSection";
 import AmenitiesSection from "@/components/AmenitiesSection";
 import SanctuaryExpandable from "@/components/SanctuaryExpandable";
 import FloorPlansSection from "@/components/FloorPlansSection";
-import SpecificationsSection from "@/components/SpecificationsSection";
 import LocationSection from "@/components/LocationSection";
 import GallerySection from "@/components/GallerySection";
 import ContactSection from "@/components/ContactSection";
@@ -68,10 +67,7 @@ export default function Home() {
       {/* 9. Floor Plans Crafted to Suit Your Lifestyle */}
       <FloorPlansSection onOpenPlans={() => openRegister("Request Floor Plans")} />
 
-      {/* 10. Comprehensive 18 Technical Specifications Section */}
-      <SpecificationsSection />
-
-      {/* 11. Location Split Panel with Kollur ORR Exit 2 & Live Map */}
+      {/* 10. Location Split Panel with Kollur ORR Exit 2 & Live Map */}
       <LocationSection />
 
       {/* 12. Luxury Gallery with Hover Zoom and Lightbox */}

@@ -151,7 +151,6 @@ export const siteContent: SiteContent = {
     { label: "AMENITIES", href: "#amenities" },
     { label: "ECOSYSTEM", href: "#ecosystem" },
     { label: "FLOOR PLANS", href: "#floor-plans" },
-    { label: "SPECIFICATIONS", href: "#specifications" },
     { label: "LOCATION", href: "#location" },
     { label: "GALLERY", href: "#gallery" },
     { label: "ENQUIRY", href: "#contactus" },
@@ -563,7 +562,7 @@ export const siteContent: SiteContent = {
     ],
   },
   contact: {
-    tag: "ENQUIRY",
+    tag: "ENQUIRIES",
     titleLines: ["BRINGING IN THE", "EASE YOU DESIRE"],
     phonePlaceholderNote: "Official contact phone number pending confirmation from management.",
     phone: "",

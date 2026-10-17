@@ -206,42 +206,6 @@ export default function AmenitiesSection({ onOpenAmenities }: AmenitiesSectionPr
       }}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Top Overlapping Banner */}
-        <div className="relative -mt-36 md:-mt-48 mb-20 md:mb-28 z-30">
-          <div className="bg-white rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-l-8 border-gold">
-            <div className="flex items-center space-x-6">
-              <div className="w-16 h-16 shrink-0 relative">
-                <Image
-                  src="/assets/icons/amenities-badge.png"
-                  alt="Clubhouse Amenities"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-gold font-medium mb-1">
-                  {amenitiesData.bannerText}
-                </p>
-                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#232323] font-medium">
-                  <span className="underline decoration-gold decoration-2 underline-offset-4">
-                    {amenitiesData.bannerSubtext}
-                  </span>
-                </h3>
-              </div>
-            </div>
-
-            <button
-              onClick={onOpenAmenities}
-              className="shrink-0 group inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-gold hover:bg-[#181719] text-white font-medium text-xs tracking-[0.2em] uppercase transition-all duration-300 shadow-luxury"
-            >
-              <span>{amenitiesData.bannerBtnText}</span>
-              <div className="relative overflow-hidden w-4 h-4">
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-6" />
-                <ArrowRight className="w-4 h-4 absolute top-0 left-0 -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
-              </div>
-            </button>
-          </div>
-        </div>
 
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">

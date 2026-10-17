@@ -2,92 +2,138 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Building2 } from "lucide-react";
 import { siteContent } from "@/data/siteContent";
 
 export default function Footer() {
+  const navLinks = [
+    { label: "Overview", href: "#overview" },
+    { label: "Architecture", href: "#architecture" },
+    { label: "Nature", href: "#nature" },
+    { label: "Residences", href: "#residences" },
+    { label: "Amenities", href: "#amenities" },
+    { label: "Floor Plans", href: "#floor-plans" },
+    { label: "Location", href: "#location" },
+    { label: "Enquiries", href: "#contactus" },
+  ];
+
   return (
-    <footer className="relative bg-[#070506] text-white/70 pt-16 pb-12 border-t border-white/10 text-xs font-sans">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Top Brand & Navigation Tier */}
-        <div className="flex flex-col md:flex-row items-center justify-between pb-12 border-b border-white/10 gap-8">
-          {/* Brand Logo in Matching Forest Green Container */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
+    <footer className="relative bg-[#0D5A46] text-[#F8F5ED] pt-20 pb-12 overflow-hidden border-t border-[#C6A568]/30">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
+        {/* Top 3-Area Editorial Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/15">
+          {/* Area A: Brand Signature */}
+          <div className="lg:col-span-4 space-y-6">
             <Link href="#hero" className="inline-block group" aria-label="VANAE Home">
-              <div className="inline-flex items-center justify-center bg-[#0D5A46] rounded-xl px-3 py-1.5 md:px-3.5 md:py-2 border border-gold/35 group-hover:border-gold shadow-lg group-hover:shadow-[0_0_20px_rgba(195,150,99,0.3)] transition-all duration-300">
+              <div className="relative inline-block overflow-hidden rounded-xl border border-[#C6A568]/40 shadow-md transition-all duration-300 group-hover:border-[#C6A568]">
                 <Image
                   src={siteContent.branding.logoLight}
                   alt={siteContent.branding.name}
                   width={492}
                   height={430}
-                  className="h-10 md:h-12 w-auto object-contain block transition-transform duration-300 group-hover:scale-105"
+                  className="h-16 w-auto object-contain block transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             </Link>
-            <p className="text-white/60 text-xs tracking-wider uppercase font-medium">
-              {siteContent.branding.tagline}
+
+            <div className="space-y-2">
+              <h3 className="font-serif text-xl sm:text-2xl text-white font-normal tracking-wide">
+                THE ART OF ROOTED LIVING
+              </h3>
+              <p className="text-xs uppercase tracking-[0.25em] text-[#C6A568] font-medium font-sans">
+                {siteContent.branding.tagline}
+              </p>
+            </div>
+
+            <p className="text-xs text-[#F8F5ED]/75 leading-relaxed font-sans max-w-sm">
+              Rising 36 towering floors above Kollur, ORR Exit 2, Hyderabad. A sanctuary where expansive luxury living preserves an intimate connection to the earth.
             </p>
           </div>
 
-          {/* Quick Nav Anchors */}
-          <nav className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-3">
-            {siteContent.navigation.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-white/70 hover:text-gold transition-colors text-xs uppercase tracking-wider font-medium"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+          {/* Area B: Navigation Architecture */}
+          <div className="lg:col-span-4 space-y-5">
+            <span className="text-xs uppercase tracking-[0.25em] text-[#C6A568] font-semibold block">
+              EXPLORE VANAE
+            </span>
 
-        {/* Middle Tier: Addresses */}
-        <div className="py-8 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-white/10 text-white/60">
-          <div className="flex items-start space-x-3">
-            <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-            <div>
-              <span className="text-[11px] uppercase tracking-wider text-gold font-semibold block mb-0.5">
+            <nav className="grid grid-cols-2 gap-x-6 gap-y-3 pt-1">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-xs sm:text-sm text-[#F8F5ED]/80 hover:text-[#C6A568] transition-colors py-1 block font-sans font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Area C: Addresses & Direct Contact */}
+          <div className="lg:col-span-4 space-y-6">
+            <span className="text-xs uppercase tracking-[0.25em] text-[#C6A568] font-semibold block">
+              ADDRESSES
+            </span>
+
+            {/* Site Address */}
+            <div className="space-y-1">
+              <span className="text-[11px] uppercase tracking-wider text-[#C6A568]/90 font-medium block">
                 Site Address
               </span>
-              <p className="text-xs leading-relaxed">{siteContent.footer.siteAddress}</p>
+              <p className="text-xs text-[#F8F5ED]/85 leading-relaxed font-sans">
+                {siteContent.footer.siteAddress}
+              </p>
+              <a
+                href="https://maps.google.com/?q=Kollur+Exit+2+Nehru+Outer+Ring+Road+Hyderabad"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block text-[11px] text-[#C6A568] hover:underline pt-0.5"
+              >
+                View on Google Maps →
+              </a>
             </div>
-          </div>
-          <div className="flex items-start space-x-3">
-            <Building2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-            <div>
-              <span className="text-[11px] uppercase tracking-wider text-gold font-semibold block mb-0.5">
-                Corporate Address
+
+            {/* Corporate Address */}
+            <div className="space-y-1 pt-2">
+              <span className="text-[11px] uppercase tracking-wider text-[#C6A568]/90 font-medium block">
+                Corporate Office
               </span>
-              <p className="text-xs leading-relaxed">{siteContent.footer.corporateAddress}</p>
+              <p className="text-xs text-[#F8F5ED]/85 leading-relaxed font-sans">
+                {siteContent.footer.corporateAddress}
+              </p>
+            </div>
+
+            {/* Inquiries */}
+            <div className="space-y-1 pt-2">
+              <span className="text-[11px] uppercase tracking-wider text-[#C6A568]/90 font-medium block">
+                Official Inquiries
+              </span>
+              <a
+                href={`mailto:${siteContent.contact.email}`}
+                className="text-xs sm:text-sm text-white hover:text-[#C6A568] transition-colors font-medium font-sans block"
+              >
+                {siteContent.contact.email}
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Tier: Copyright, TS RERA, and Socials */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left: Copyright */}
+        {/* Bottom Tier: Copyright, RERA, and Socials */}
+        <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#F8F5ED]/65 font-sans">
+          {/* Copyright & Attribution */}
           <div className="text-center md:text-left">
-            <p className="text-white/60">
-              {siteContent.footer.copyright} — Site by{" "}
-              <Link
-                href={siteContent.footer.designedByUrl}
-                className="text-gold hover:underline font-medium"
-              >
-                {siteContent.footer.designedBy}
-              </Link>
+            <p>
+              {siteContent.footer.copyright}
             </p>
           </div>
 
-          {/* Center: RERA Notice */}
+          {/* RERA Notice */}
           <div className="text-center">
-            <p className="text-white/80 uppercase tracking-wider text-[11px]">
+            <p className="text-[11px] uppercase tracking-wider text-[#F8F5ED]/80">
               {siteContent.footer.reraNumber}
             </p>
           </div>
 
-          {/* Right: Social Links */}
+          {/* Social Channels */}
           <div className="flex items-center space-x-6">
             {siteContent.contact.socials.map((social) => (
               <a
@@ -95,7 +141,7 @@ export default function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-white/70 hover:text-gold transition-colors font-semibold uppercase tracking-wider text-xs"
+                className="text-xs uppercase tracking-wider text-[#F8F5ED]/75 hover:text-[#C6A568] transition-colors font-semibold"
               >
                 {social.short}
               </a>
