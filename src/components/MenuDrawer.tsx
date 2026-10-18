@@ -70,7 +70,7 @@ export default function MenuDrawer({ isOpen, onClose, onOpenRegister }: MenuDraw
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center my-auto">
           {/* Nav Links Column */}
           <div className="lg:col-span-7">
-            <nav className="flex flex-col space-y-3 md:space-y-4 text-center lg:text-left">
+            <nav className="flex flex-col space-y-2 sm:space-y-2.5 md:space-y-3 text-center lg:text-left">
               {siteContent.navigation.map((item, index) => (
                 <div
                   key={item.label}
@@ -84,9 +84,9 @@ export default function MenuDrawer({ isOpen, onClose, onOpenRegister }: MenuDraw
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="group inline-flex items-center space-x-4 font-serif text-2xl sm:text-3xl lg:text-4xl text-white/90 hover:text-gold transition-colors duration-300 tracking-wider"
+                    className="group inline-flex items-center space-x-3 sm:space-x-4 font-serif text-lg sm:text-xl md:text-2xl text-white/90 hover:text-gold transition-colors duration-300 tracking-wider"
                   >
-                    <span className="font-sans text-xs tracking-widest text-gold/60 font-medium group-hover:text-gold transition-colors">
+                    <span className="font-sans text-[11px] sm:text-xs tracking-widest text-gold/60 font-medium group-hover:text-gold transition-colors">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="relative">

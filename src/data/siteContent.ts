@@ -130,6 +130,11 @@ export interface SiteContent {
     corporateAddress: string;
     reraNumber: string;
   };
+  whatsapp?: {
+    phoneNumber?: string;
+    defaultMessage?: string;
+    url?: string;
+  };
 }
 
 export const siteContent: SiteContent = {
@@ -578,7 +583,13 @@ export const siteContent: SiteContent = {
       { name: "Facebook", url: "https://facebook.com", short: "Fb." },
       { name: "Instagram", url: "https://instagram.com", short: "Ig." },
       { name: "LinkedIn", url: "https://linkedin.com", short: "In." },
+      { name: "WhatsApp", url: "https://wa.me/?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20VANAE%20luxury%20residences.", short: "Wa." },
     ],
+  },
+  whatsapp: {
+    phoneNumber: "",
+    defaultMessage: "Hello, I would like to inquire about VANAE luxury residences.",
+    url: "https://wa.me/?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20VANAE%20luxury%20residences.",
   },
   footer: {
     copyright: "© 2026 VANAE. All Rights Reserved.",

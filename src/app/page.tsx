@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
@@ -12,24 +12,27 @@ import SanctuaryExpandable from "@/components/SanctuaryExpandable";
 import FloorPlansSection from "@/components/FloorPlansSection";
 import LocationSection from "@/components/LocationSection";
 import GallerySection from "@/components/GallerySection";
-import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import RegisterModal from "@/components/RegisterModal";
+import EnquiryModal from "@/components/EnquiryModal";
 import VideoModal from "@/components/VideoModal";
 import LightboxModal from "@/components/LightboxModal";
+import FloatingActions from "@/components/FloatingActions";
 
 import OpeningLogoAnimation from "@/components/OpeningLogoAnimation";
 import { siteContent } from "@/data/siteContent";
 
 export default function Home() {
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [modalTitle, setModalTitle] = useState("Register Now");
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [enquiryTitle, setEnquiryTitle] = useState("BRINGING IN THE EASE YOU DESIRE");
+  const [enquiryFormTitle, setEnquiryFormTitle] = useState("Register Your Interest");
+  const enquiryTriggerRef = useRef<HTMLButtonElement>(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const openRegister = (title: string = "Register Now") => {
-    setModalTitle(title);
-    setIsRegisterOpen(true);
+  const openRegister = (title: string = "Register Your Interest") => {
+    setEnquiryTitle("BRINGING IN THE EASE YOU DESIRE");
+    setEnquiryFormTitle(title);
+    setIsEnquiryOpen(true);
   };
 
   return (
@@ -73,17 +76,16 @@ export default function Home() {
       {/* 12. Luxury Gallery with Hover Zoom and Lightbox */}
       <GallerySection onOpenLightbox={(idx) => setLightboxIndex(idx)} />
 
-      {/* 13. Relationship Manager Lead Capture & Sales Info */}
-      <ContactSection />
-
-      {/* 14. Footer & Regulatory Information */}
+      {/* 13. Footer & Regulatory Information */}
       <Footer />
 
       {/* Interactive Popups & Modals */}
-      <RegisterModal
-        isOpen={isRegisterOpen}
-        onClose={() => setIsRegisterOpen(false)}
-        title={modalTitle}
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+        title={enquiryTitle}
+        formTitle={enquiryFormTitle}
+        triggerRef={enquiryTriggerRef}
       />
 
       <VideoModal
@@ -96,6 +98,12 @@ export default function Home() {
         currentIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onNavigate={(idx) => setLightboxIndex(idx)}
+      />
+
+      {/* Floating Action Buttons: Enquiry (top) + WhatsApp (bottom) */}
+      <FloatingActions
+        onOpenEnquiry={() => openRegister("Register Your Interest")}
+        enquiryButtonRef={enquiryTriggerRef}
       />
     </main>
   );

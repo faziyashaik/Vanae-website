@@ -17,7 +17,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#0D5A46] text-[#F8F5ED] pt-20 pb-12 overflow-hidden border-t border-[#C6A568]/30">
+    <footer id="footer" className="relative bg-[#0D5A46] text-[#F8F5ED] pt-20 pb-12 overflow-hidden border-t border-[#C6A568]/30">
+      <div id="contactus" className="sr-only" />
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
         {/* Top 3-Area Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/15">

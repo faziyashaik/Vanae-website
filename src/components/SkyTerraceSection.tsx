@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { siteContent } from "@/data/siteContent";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -115,27 +114,6 @@ export default function SkyTerraceSection() {
           </p>
         </div>
 
-        {/* 3 Distinct Nature-Led Storytelling Panels */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {siteContent.natureStorytelling.panels.map((panel, idx) => (
-            <div
-              key={idx}
-              className="bg-black/50 backdrop-blur-md border border-white/15 p-8 rounded-2xl group hover:border-gold transition-colors duration-300"
-            >
-              <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center p-3 mb-6 border border-gold/40 group-hover:scale-110 transition-transform duration-300">
-                <span className="text-gold font-serif font-bold text-lg">{idx + 1}</span>
-              </div>
-
-              <h4 className="text-base font-semibold tracking-[0.2em] uppercase text-gold mb-3">
-                {panel.phrase}
-              </h4>
-
-              <p className="text-white/85 text-sm md:text-base leading-relaxed font-sans">
-                {panel.copy}
-              </p>
-            </div>
-          ))}
-        </div>
 
         {/* Environmental Benefits Section */}
         <div className="pt-10 border-t border-white/15">

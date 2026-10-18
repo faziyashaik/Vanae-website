@@ -106,17 +106,6 @@ export default function HeroSection() {
           {siteContent.hero.majorStatement}
         </h1>
 
-        {/* Project Facts Line */}
-        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-xs sm:text-sm tracking-[0.2em] uppercase font-medium text-white/90 font-sans border border-white/20 py-3 px-6 rounded-full bg-black/40 backdrop-blur-md shadow-lg">
-          {siteContent.hero.facts.map((fact, idx) => (
-            <div key={idx} className="flex items-center space-x-4">
-              <span>{fact}</span>
-              {idx < siteContent.hero.facts.length - 1 && (
-                <span className="text-gold font-bold">·</span>
-              )}
-            </div>
-          ))}
-        </div>
 
         {/* Scroll Mouse Cue Icon & Prompt */}
         <p className="text-white/70 font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase font-medium mb-4 drop-shadow">
