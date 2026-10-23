@@ -76,31 +76,68 @@ export default function ContactSection() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim()) {
+    if (isSubmitting) return;
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
+
+    if (!trimmedName) {
       setStatus({ type: "error", message: "Please enter your full name." });
       return;
     }
-    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) {
+    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setStatus({ type: "error", message: "Please enter a valid email address." });
       return;
     }
-    if (!formData.phone.trim() || formData.phone.length < 8) {
+    if (!trimmedPhone || trimmedPhone.length < 8) {
       setStatus({ type: "error", message: "Please enter a valid phone number." });
       return;
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: trimmedName,
+          email: trimmedEmail,
+          phone: trimmedPhone,
+          message: "",
+          source: "contact",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Unable to submit your enquiry. Please try again.");
+      }
+
       setStatus({
         type: "success",
         message:
+          data.message ||
           "Thank you for registering your interest. Our Relationship Manager will be in touch with you shortly.",
       });
       setFormData({ name: "", email: "", phone: "" });
-    }, 700);
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Unable to submit your enquiry. Please try again.";
+      setStatus({
+        type: "error",
+        message: errorMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -154,7 +191,8 @@ export default function ContactSection() {
                   placeholder="Enter your full name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-lg bg-[#FAF7F2] border border-[#EAE1D1] focus:border-[#C6A568] focus:bg-white text-[#44382D] placeholder-[#A49A8E] text-sm outline-none transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3.5 rounded-lg bg-[#FAF7F2] border border-[#EAE1D1] focus:border-[#C6A568] focus:bg-white text-[#44382D] placeholder-[#A49A8E] text-sm outline-none transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   required
                 />
               </div>
@@ -169,7 +207,8 @@ export default function ContactSection() {
                   placeholder="name@domain.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-lg bg-[#FAF7F2] border border-[#EAE1D1] focus:border-[#C6A568] focus:bg-white text-[#44382D] placeholder-[#A49A8E] text-sm outline-none transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3.5 rounded-lg bg-[#FAF7F2] border border-[#EAE1D1] focus:border-[#C6A568] focus:bg-white text-[#44382D] placeholder-[#A49A8E] text-sm outline-none transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   required
                 />
               </div>
@@ -184,7 +223,8 @@ export default function ContactSection() {
                   placeholder="+91 Phone number"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-lg bg-[#FAF7F2] border border-[#EAE1D1] focus:border-[#C6A568] focus:bg-white text-[#44382D] placeholder-[#A49A8E] text-sm outline-none transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3.5 rounded-lg bg-[#FAF7F2] border border-[#EAE1D1] focus:border-[#C6A568] focus:bg-white text-[#44382D] placeholder-[#A49A8E] text-sm outline-none transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   required
                 />
               </div>
@@ -212,7 +252,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-3 px-10 py-4 rounded-full bg-[#C6A568] hover:bg-[#105D49] text-white font-medium text-xs tracking-[0.25em] uppercase transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-3 px-10 py-4 rounded-full bg-[#C6A568] hover:bg-[#105D49] text-white font-medium text-xs tracking-[0.25em] uppercase transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>{isSubmitting ? "PROCESSING..." : "REGISTER INTEREST"}</span>
                   <ArrowUpRight className="w-4 h-4 ml-1" />
